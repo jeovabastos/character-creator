@@ -5,34 +5,32 @@ function createCharacter(object){
     return new Character(object)
 }
 
-const ageOptions = ['young', 'adult', 'old']
 const listOptions = {
     name: nameList,
     city: cityList,
     nationality: nationalitList,
-    age: ageOptions[2]
+    age: ['young', 'adult', 'old']
+}
+
+const startCharacter = createCharacter(listOptions)
+const currentlyCharacter = {
+    name: document.getElementById('charName'),
+    city: document.getElementById('charCity'),
+    nationality: document.getElementById('charNationality'),
+    age: document.getElementById('charAge')
 }
 
 document.getElementById('generatorButton').addEventListener('click', ()=>{
-    const character = createCharacter(listOptions)
+    const character = startCharacter.default()
+    console.log('default: ', character)
 
-    const name = character.chooseName()
-    const city = character.chooseCity()
-    const nationality = character.chooseNationality()
-    const age = character.chooseAge()
+    // ALTERAR VALORES DOS INPUTS
+    currentlyCharacter.name.value = character.name
+    currentlyCharacter.city.value = character.city
+    currentlyCharacter.nationality.value = character.nationality
+    currentlyCharacter.age.value = character.age
 
-    const currentlyCharacter = {
-        name: document.getElementById('charName'),
-        city: document.getElementById('charCity'),
-        nationality: document.getElementById('charNationality'),
-        age: document.getElementById('charAge')
-    }
-
-    currentlyCharacter.name.value = name
-    currentlyCharacter.city.value = city
-    currentlyCharacter.nationality.value = nationality
-    currentlyCharacter.age.value = age
-
+    // SALVAR OS VALORES NO FURUTO ARQUIVO .MD
     userInputs.name = `# name \n ${currentlyCharacter.name.value} \n\n`
     userInputs.city = `# city \n ${currentlyCharacter.city.value} \n\n`
     userInputs.nationality = `# nationality \n ${currentlyCharacter.nationality.value} \n\n`
@@ -51,15 +49,12 @@ function addInputEvent(id, property){
 addInputEvent('charName', 'name')
 addInputEvent('charAge', 'age')
 addInputEvent('charNationality', 'nationality')
-addInputEvent('charCity', 'city')     
-
+addInputEvent('charCity', 'city')       
 
 function downloadTextAsFile(filename) {
 
     const data = Object.values(userInputs)
-    console.log(data)
-    // console.log(Object.values(userInputs))
-
+    // console.log(data)
 
     let parsedData = data[0]
 
@@ -80,6 +75,12 @@ function downloadTextAsFile(filename) {
 }
 
 document.getElementById('saveFileButton').addEventListener('click', ()=>{
-
     downloadTextAsFile('meu_arquivo.md')
+})
+
+// TESTANDO FEATURE NOVO NOME
+document.getElementById('newNameButton').addEventListener('click', ()=>{
+    const character = startCharacter.default()
+    console.log('NAME AGAIN: ', character.name)
+    currentlyCharacter.name.value = character.name
 })

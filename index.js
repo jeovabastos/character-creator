@@ -1,18 +1,19 @@
-import { nameList, cityList, nationalitList } from "./lists.js"
+import { listOptions } from "./lists.js"
 import { Character } from "./character.js"
 
 function createCharacter(object){
     return new Character(object)
 }
 
-const listOptions = {
-    name: nameList,
-    city: cityList,
-    nationality: nationalitList,
-    age: ['young', 'adult', 'old']
-}
-
 const startCharacter = createCharacter(listOptions)
+
+const inputsArray = [
+    {id: 'charName', property: 'name'},
+    {id: 'charCity', property: 'city'},
+    {id: 'charNationality', property: 'nationality'},
+    {id: 'charAge', property: 'age'}
+]
+
 const currentlyCharacter = {
     name: document.getElementById('charName'),
     city: document.getElementById('charCity'),
@@ -27,18 +28,17 @@ document.getElementById('generatorButton').addEventListener('click', ()=>{
     function alterarValorInput(id, property){
         document.getElementById(id).value = character[property]
     }
-    alterarValorInput("charName", "name")
-    alterarValorInput("charCity", "city")
-    alterarValorInput("charNationality", "nationality")
-    alterarValorInput("charAge", "age")
+
+    inputsArray.map(item =>{
+        alterarValorInput(item.id, item.property)
+    })
 
     function salvarValorArquivo(property){
         userInputs[property] = `# ${property} \n ${currentlyCharacter[property].value} \n\n`
     }
-    salvarValorArquivo('name')
-    salvarValorArquivo('city')
-    salvarValorArquivo('nationality')
-    salvarValorArquivo('age')
+    for(let key in currentlyCharacter){
+        salvarValorArquivo(key)
+    }
 
     return
 })
@@ -51,10 +51,9 @@ function addInputEvent(id, property){
         userInputs[property] = `# ${property} \n ${e.target.value} \n\n`
     })
 }    
-addInputEvent('charName', 'name')
-addInputEvent('charAge', 'age')
-addInputEvent('charNationality', 'nationality')
-addInputEvent('charCity', 'city')       
+inputsArray.map(item=>{
+    addInputEvent(item.id, item.property)
+})
 
 function downloadTextAsFile(filename) {
     const data = Object.values(userInputs)
@@ -77,10 +76,13 @@ document.getElementById('saveFileButton').addEventListener('click', ()=>{
     downloadTextAsFile('meu_arquivo.md')
 })
 
-// TESTANDO FEATURE NOVO NOME
-document.getElementById('newNameButton').addEventListener('click', ()=>{
-    const character = startCharacter.default()
-    console.log('NAME AGAIN: ', character.name)
-    currentlyCharacter.name.value = character.name
-    userInputs.name = `# name \n ${character.name} \n\n`
-})
+// TESTANDO FEATURE NOVO INPUT
+function newInputValue(id, property){
+    document.getElementById(id).addEventListener('click', ()=>{
+        const character = startCharacter.default()
+        console.log(`${property} AGAIN: `, character[property])
+        currentlyCharacter[property].value = character[property]
+        userInputs.name = `# ${property} \n ${character[property]} \n\n`
+    })
+}
+newInputValue('newNameButton', 'name')

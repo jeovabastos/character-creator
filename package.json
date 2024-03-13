@@ -1,13 +1,13 @@
 {
-  "name": "test",
-  "version": "0.1.0",
-  "description": "",
+  "name": "character_creator",
+  "version": "0.2.2",
+  "description": "It provides a way to automaticaly (or manually) creates a character for your story",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "jeova_bastos",
+  "license": "MIT"
 }

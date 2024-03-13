@@ -1,12 +1,9 @@
 export class Character{
-    constructor({name, city, nationality, age}){
-        this.name = name 
-        this.city = city
-        this.nationality = nationality
-        this.age = age
+    constructor(character){
+        this.character = character
     }
 
-    choose(list){
+    #choose(list){
         const iterator = Math.floor(Math.random() * list.length)
         const value = list[iterator] 
         
@@ -14,21 +11,24 @@ export class Character{
     }
 
     chooseName(){
-        const newName = this.choose(this.name)
-        this.name = newName
-        return newName
+        if(this.character.name){
+            const newName = this.#choose(this.character.name)
+            return newName
+        }
     }
 
     chooseCity(){
-        const newCity = this.choose(this.city)
-        this.city = newCity
-        return newCity
+        if(this.character.city){
+            const newCity = this.#choose(this.character.city)
+            return newCity
+        }
     }
 
     chooseNationality(){
-        const newNationality = this.choose(this.nationality)
-        this.nationality = newNationality
-        return newNationality
+        if(this.character.nationality){
+            const newNationality = this.#choose(this.character.nationality)
+            return newNationality
+        }
     }
 
     chooseAge(){
@@ -47,13 +47,23 @@ export class Character{
             },
         }
         
-        if(iterator[this.age]){
-            const ageValue = (Math.ceil(Math.random() * iterator[this.age].modifier)) + iterator[this.age].minimum
+        if(iterator[this.character.age[0]]){
+            const ageValue = (Math.ceil(Math.random() * iterator[this.character.age[0]].modifier)) + iterator[this.character.age[0]].minimum
 
-            this.age = ageValue
             return ageValue
         }
         
         return 'Insert young, adult or old'
+    }
+
+    default(){
+        const defaultCharacter = {
+            name: this.chooseName(),
+            city: this.chooseCity(),
+            nationality: this.chooseNationality(),
+            age: this.chooseAge()
+        }
+
+        return defaultCharacter
     }
 }

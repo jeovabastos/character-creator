@@ -66,3 +66,10 @@ export const nationalitList = [
     "Fief de Brabant",
     "Fief de Westphalie"
 ];
+
+export const listOptions = {
+    name: nameList,
+    city: cityList,
+    nationality: nationalitList,
+    age: ['young', 'adult', 'old']
+}

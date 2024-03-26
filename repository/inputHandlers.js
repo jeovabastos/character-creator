@@ -1,4 +1,3 @@
-
 // PEGAR OS INPUTS DO USUARIO (MANUALMENTE)
 export function addInputEvent(id, property, listUserInputs){    
     document.getElementById(id).addEventListener('input', (e)=>{ 

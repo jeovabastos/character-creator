@@ -1,6 +1,6 @@
 {
   "name": "character_creator",
-  "version": "0.2.4",
+  "version": "0.3.4",
   "description": "It provides a way to automaticaly (or manually) creates a character for your story",
   "main": "index.js",
   "type": "module",

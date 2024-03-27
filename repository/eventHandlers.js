@@ -6,6 +6,13 @@ export function newProperty(title, array){
         const testInput = document.createElement('input')
         
         testTitle.innerHTML = title
+        testInput.style = `
+            width: 100%;
+            padding: .5em;
+            display: flex;
+            flex-direction: collumn;
+            margin-top: .5em;
+        `
         testInput.type = 'text'
         testInput.id = title
         array.push({id:testInput.id, property: testInput.id})

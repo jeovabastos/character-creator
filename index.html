@@ -4,49 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Creator</title>
+    <link rel="stylesheet" href="./index.css"/>
     <script src="./index.js" type="module" defer></script>
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>Character Creator Prototype</h1>
     </header>
     
-    <article>
-        <p>Click in the button below to generate a character or give your own inputs mannualy</p>
-        <button id="generatorButton">Generate Character</button>
+    <article class="main">
+        <section class="description">
+            <img src="./public/landscape.svg"/>
+            <p>Click in the button below to generate a character or give your own inputs mannualy</p>
+            
+            <div class="charButtons">
+                <button id="generatorButton">Generate Character</button>
+                <button id="saveFileButton">Save character as file</button>
+            </div>
+        </section>
 
-        <section id="properties">
+        <section class="properties" id="properties">
             <div>
-                <input id="addPropertyInput" type="text"/>
-                <button id="addPropertyButton">Add property</button>
+                <h2>New Property</h2>
+                <div>
+                    <input id="addPropertyInput" type="text"/>
+                    <button id="addPropertyButton">ADD</button>
+                </div>
             </div>
 
             <div>
                 <h2>Name</h2>
-                <button id="newNameButton">AGAIN</button>
-                <input id="charName" type="text"/>
+                <div>
+                    <input id="charName" type="text"/>
+                    <button id="newNameButton">AGAIN</button>
+                </div>
             </div>
 
             <div>
                 <h2>City</h2>
-                <button id="newCityButton">AGAIN</button>
-                <input id="charCity" type="text"/>
+                <div>
+                    <input id="charCity" type="text"/>
+                    <button id="newCityButton">AGAIN</button>
+                </div>
             </div>
 
             <div>
                 <h2>Nationality</h2>
-                <button id="newNationalityButton">AGAIN</button>
-                <input id="charNationality" type="text"/>
+                <div>
+                    <input id="charNationality" type="text"/>
+                    <button id="newNationalityButton">AGAIN</button>
+                </div>
             </div>
 
             <div>
                 <h2>Age</h2>
-                <button id="newAgeButton">AGAIN</button>
-                <input id="charAge" type="number"/>
+                <div>
+                    <input id="charAge" type="number"/>
+                    <button id="newAgeButton">AGAIN</button>
+                </div>
             </div>
-        </section>
+
+        </section>        
     </article>
 
-    <button id="saveFileButton">Save character as file</button>
 </body>
 </html>
